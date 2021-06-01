@@ -1,0 +1,62 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:f="sap.ui.layout.form">
+<Dialog id="poItemsDialog" title="PurchaseOrder Items">
+  <content>
+    <Table
+				headerText="{path:'viewProperties>/itemListCount', formatter: '.formatter.itemListTitle' }"
+				updateFinished="onUpdateFinished" class="sapUiResponsiveMargin" width="auto"
+				items="{path: 'PurchaseOrderItems',
+						parameters: {select: 'POId,POItemPos,Product,Price,PriceCurrency,GrossAmount,GrossAmountCurrency,Quantity,DeliveryDate'}}">
+				<columns>
+					<!--Product name-->
+					<Column width="30%">
+						<header>
+							<Label text="{/#PurchaseOrderItem/Product/@sap:label}" visible="{= !${device>/system/phone} }" />
+						</header>
+					</Column>
+					<!--Delivery Date-->
+					<Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" width="15%">
+						<header>
+							<Label text="{/#PurchaseOrderItem/DeliveryDate/@sap:label}" />
+						</header>
+					</Column>
+					<!--Ordered Quantity-->
+					<Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" hAlign="Right" width="15%">
+						<header>
+							<Label text="{/#PurchaseOrderItem/Quantity/@sap:label}" />
+						</header>
+					</Column>
+					<!--Product price-->
+					<Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" hAlign="Right" width="20%">
+						<header>
+							<Label text="{/#PurchaseOrderItem/Price/@sap:label}" />
+						</header>
+					</Column>
+					<!--Gross amount of the item-->
+					<Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" hAlign="Right" width="20%">
+						<header>
+							<Label text="{/#PurchaseOrderItem/GrossAmount/@sap:label}" />
+						</header>
+					</Column>
+				</columns>
+				<ColumnListItem>
+					<cells>
+						<!--Product name-->
+						<Text text="{Product}" class="sapMTableContentMargin" />
+						<!--Delivery Date-->
+						<Text text="{path:'DeliveryDate', formatter: '.formatter.deliveryDate' }" class="sapMTableContentMargin" />
+						<!--Ordered Quantity-->
+						<Text text="{path: 'Quantity', type: 'sap.ui.model.type.Integer'}" class="sapMTableContentMargin" />
+						<!--Product price-->
+						<ObjectNumber number="{path: 'Price', formatter: '.formatter.amountWithOutCurrency'}" unit="{PriceCurrency}" 
+							emphasized="false" class="sapMTableContentMargin" />
+						<!--Gross amount of the item-->
+						<ObjectNumber  number="{path: 'GrossAmount', formatter: '.formatter.amountWithOutCurrency'}" unit="{GrossAmountCurrency}" class="sapMTableContentMargin" />
+					</cells>
+				</ColumnListItem>
+			</Table>
+  </content>
+  <buttons>
+    <Button text="Cancel" press="handleCancelDialog"/>
+  </buttons>
+</Dialog>
+</core:FragmentDefinition>
