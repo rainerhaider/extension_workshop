@@ -1,0 +1,14 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:footerbar="sap.ushell.ui.footerbar">
+	<!-- This extension point can be used to add fields to content -->
+	<Panel expand="false" expandable="true">
+	<form:SimpleForm xmlns:form="sap.ui.layout.form" id="poHeaderForm_clone" title="{i18n>xtit.formTitle}" layout="ResponsiveGridLayout" minWidth="1024" maxContainerCols="2" class="sapUiForceWidthAuto sapUiResponsiveMargin" labelSpanL="3" labelSpanM="3" emptySpanL="5" emptySpanM="5" columnsL="1" columnsM="1">
+				<Label xmlns="sap.m" id="poIdFormLabel_clone" text="{/#PurchaseOrder/POId/@sap:label}"/>
+				<Text xmlns="sap.m" id="poIdForm_clone" text="{POId}"/>
+				<Label xmlns="sap.m" id="deliveryDateFormLabel_clone" text="{/#PurchaseOrder/DeliveryDateEarliest/@sap:label}"/>
+				<Text xmlns="sap.m" id="deliveryDateForm_clone" text="{parts:[{path: 'DeliveryDateEarliest'}, {path: 'LaterDelivDateExist'}], formatter: '.formatter.deliveryDateAndLater' }"/>
+				<Label xmlns="sap.m" id="addressFormLabel_clone" text="{/#PurchaseOrder/DeliveryAddress/@sap:label}"/>
+				<Text xmlns="sap.m" id="addressForm_clone" text="{DeliveryAddress}"/>
+			</form:SimpleForm>
+	</Panel>
+</core:FragmentDefinition>
